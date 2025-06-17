@@ -4,13 +4,13 @@ from wordcloud import WordCloud
 import matplotlib.pyplot as plt
 
 # 1. 감정 사전 로딩
-with open(r"C:/Users/박영현/Desktop/vs/emo_env/SentiWord_info.json", encoding='utf-8') as f:
+with open(r"SentiWord_info.json", encoding='utf-8') as f:
     senti_dict = json.load(f)
 
 emotion_words = {item['word']: item['polarity'] for item in senti_dict}
 
 # 2. 텍스트 파일에서 상담 대화 불러오기
-with open("emo_env/test.txt", "r", encoding="utf-8") as f:
+with open("test.txt", "r", encoding="utf-8") as f:
     lines = f.readlines()
 
 # 2-1. 내담자 대화만 추출
