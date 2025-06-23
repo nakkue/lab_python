@@ -34,8 +34,8 @@ words_score = word_extractor.extract() # 단어와 점수 추출
 # 4-1. 상위 등장 단어 중 의미 없는 단어(짧거나 흔한 것들) 제거
 candidate_stopwords = {    
     word for word, score in words_score.items()    
-    if len(word) <= 1 or score.frequency >= 10      
-}  # 길이가 1 이하이거나 빈도가 10 이상인 단어를 불용어 후보로 추가
+    if len(word) <= 1 or (score.leftside_frequency + score.rightside_frequency) >= 10
+}  
 
 # 5. 형태소 분석 (kiwipiepy) 
 kiwi = Kiwi() 
@@ -45,23 +45,23 @@ tokens = [token.form for token in kiwi.tokenize(text_client)] # 형태소 분석
 filtered_emotions = [    
     word for word in tokens     
     if word not in candidate_stopwords and word in emotion_words     
-]   # 불용어 후보에 포함되지 않고 감정 단어 사전에 있는 단어만 필터링하여 남김
- 
+]
+
 # 7. 감정 단어 개수 세기
-unique_emotions = set(filtered_emotions)  # 필터링된 감정 단어의 고유한 단어 집합 생성
-emotion_freq = {word: filtered_emotions.count(word) for word in unique_emotions}  # 각 단어의 빈도수 계산
+unique_emotions = set(filtered_emotions)  # 고유 감정 단어 추출
+emotion_freq = {word: filtered_emotions.count(word) for word in unique_emotions}  # 각 단어 빈도수 계산
 
 # 8. 워드클라우드 생성
 wc = WordCloud(
-    font_path = r"C:/Windows/Fonts/malgun.ttf",  # 윈도우 기본 한글 폰트
+    font_path=r"C:/Windows/Fonts/malgun.ttf",  # 한글 폰트 경로
     background_color="white",  
     width=800,
     height=400
 )
-cloud = wc.generate_from_frequencies(emotion_freq)  # 감정 단어 빈도수로부터 워드클라우드 생성
+cloud = wc.generate_from_frequencies(emotion_freq)  # 감정 단어로 워드클라우드 생성
 
 # 9. 시각화
 plt.figure(figsize=(10, 5))    
 plt.imshow(cloud, interpolation='bilinear')  
 plt.axis('off')  
-plt.show()  
+plt.show()
