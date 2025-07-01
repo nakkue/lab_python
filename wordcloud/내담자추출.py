@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt  # 시각화 라이브러리
 from wordcloud import WordCloud  # 워드클라우드 생성
 from collections import Counter  # 단어 빈도수 계산
 
-with open("test8.txt", "r", encoding="utf-8") as f:      
+with open("test1.txt", "r", encoding="utf-8") as f:      
     lines = f.readlines()  # 파일에서 모든 줄 읽기
 
 client_lines = []  # 내담자 대사만 추출

@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt  # 시각화 라이브러리
 from soynlp.word import WordExtractor  # soynlp 기반 단어 추출
 
 # 텍스트 파일에서 상담 대화 불러오기
-with open("test8.txt", "r", encoding="utf-8") as f:      
+with open("test1.txt", "r", encoding="utf-8") as f:      
     lines = f.readlines()   # 파일에서 모든 줄 읽기
 
 # 내담자 대사만 추출

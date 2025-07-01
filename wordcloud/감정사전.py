@@ -8,7 +8,7 @@ with open(r"SentiWord_info.json", encoding='utf-8') as f:
 emotion_words = {item['word']: item['polarity'] for item in senti_dict}  # 감정 단어와 극성 정보 추출
 
 # 2. 상담 텍스트 불러오기
-with open("test8.txt", "r", encoding="utf-8") as f:
+with open("test1.txt", "r", encoding="utf-8") as f:
     lines = f.readlines()  # 파일에서 모든 줄 읽기
 
 # 3. 내담자 대사만 추출
